@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "iransans_black";
+  src: url("fonts/IRANSansXFaNum-Black.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "iransans_medium";
+  src: url("fonts/IRANSansXFaNum-Regular.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "iransans_light";
+  src: url("fonts/IRANSansXFaNum-Light.ttf");
+  font-weight: 300;
+}
+
+html {
+  @apply font-body;
+}
