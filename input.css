@@ -23,3 +23,8 @@
 html {
   @apply font-body;
 }
+
+.text-message::selection {
+  background-color: #f91a47;
+  color: white;
+}
