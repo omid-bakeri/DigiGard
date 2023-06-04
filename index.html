@@ -7,101 +7,142 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="input.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
     <title>دیجی گرد ، جست و جو در دیجی کالا</title>
   </head>
-  <body class="bg-DigiRed">
+  <body class="bg-DigiRed mx-auto">
     <main
-      class="p-6 pt-6 mx-auto w-[90%] h-screen mb-16 shadow-inner mt-16 shadow-xl border-DigiBlack border border-lg rounded-2xl bg-DigiBlack"
+      class="p-6 dark:bg-[#082f49] pt-6 mx-auto w-[90%] h-screen mb-16 shadow-inner mt-16 shadow-xl dark:border-[#082f49] border border-lg border-DigiWhiteLevel4 rounded-2xl bg-DigiWhiteLevel4"
     >
-      <header class="w-full p-1 rounded-2xl bg-DigiBlackLight h-24 mb-6">
+      <header
+        class="w-full p-1 rounded-2xl bg-DigiWhiteLevel3 dark:bg-[#0c4a6e] h-24 mb-6"
+      >
         <nav
           class="w-[95%] mx-auto flex justify-between items-center mt-3 p-1 rounded-2xl h-16"
         >
-          <div
-            class="text-DigiRed select-none text-4xl shadow-2xl pr-4 font-bold"
-          >
+          <div class="text-DigiRed select-none text-4xl pr-4 font-bold">
             دیجی گرد
           </div>
           <div class="flex justify-center items-center space-x-0 space-y-0">
             <input
-              class="w-[32rem] text-white font-medium border-xl active:text-white focus:border-DigiRed focus:text-white h-12 pr-4 bg-DigiInputBG rounded-r-full outline-none placeholder:text-gray-400 pl-2"
+              id="search"
+              class="w-[32rem] text-white dark:text-white dark:bg-[#075985] font-medium border-xl active:text-black dark:active:text-white dark:active:text-white dark:active:border-DigiRed dark:focus:border-DigiRed focus:text-black h-12 pr-4 bg-DigiWhiteLevel2 rounded-r-full outline-none placeholder:text-Digiblack pl-2"
               type="search"
               placeholder="کالایی که می خواهید را وارد کنید یا کلید واژه آن را بنویسید"
             />
             <p
-              class="p-[0.8rem] text-center hover:cursor-pointer bg-gray-500 rounded-l-full"
+              id="search_button"
+              class="p-[0.8rem] text-center hover:cursor-pointer dark:bg-[#082f49] bg-DigiWhiteLevel4 hover:duration-500 rounded-l-full"
             >
               <i
-                class="ph-bold px-3 text-white font-bold group:hover:cursor-pointer p-0 ph-magnifying-glass"
+                class="ph-bold px-3 text-DigiWhiteLevel3 font-bold group:hover:cursor-pointer p-0 ph-magnifying-glass"
               ></i>
             </p>
           </div>
           <div
             class="icons flex justify-center gap-4 items-center space-x-4 space-y-0 p-[0.8rem]"
           >
-            <i
-              class="ph-bold bg-DigiBlack rounded-full hover:cursor-pointer ph-bookmark-simple p-4 text-white font-bold text-3xl"
-            ></i>
-            <i
-              class="ph-bold bg-DigiBlack rounded-full hover:cursor-pointer ph-sun p-4 text-white font-bold text-3xl"
-            ></i>
+            <p
+              id="save"
+              class="ph-bold bg-DigiWhiteLevel4 dark:bg-[#075985] rounded-full hover:cursor-pointer p-4 text-white font-bold text-3xl"
+            >
+              <i class="ph-fill ph-bookmark text-DigiWhiteLevel3"></i>
+            </p>
+            <p
+              id="theme-toggle"
+              class="ph-bold bg-DigiWhiteLevel4 dark:bg-[#075985] rounded-full hover:cursor-pointer p-4 text-white font-bold text-3xl"
+            >
+              <i class="ph-bold ph-moon text-DigiWhiteLevel3"></i>
+            </p>
           </div>
         </nav>
       </header>
-      <main class="w-full p-1 rounded-2xl bg-DigiBlackLight h-[51rem]">
-        <div class="flex flex-col justify-center items-center h-full">
-          <div class="text-message text-center text-white font-bold text-3xl">
+      <main
+        class="w-full p-1 rounded-2xl bg-DigiWhiteLevel3 dark:bg-[#0c4a6e] h-[51rem]"
+      >
+        <div
+          id="message-text"
+          class="message hidden flex flex-col justify-center items-center h-full"
+        >
+          <div
+            class="text-message dark:text-white text-center text-DigiBlack font-bold text-3xl"
+          >
             چیزی برای نمایش وجود ندارد لطفا کالایی که می خواهید را جست و جو
             کنید.😀
           </div>
         </div>
         <div
-          class="w-[97.5%] hidden grid grid-cols-7 mx-auto mt-3 rounded-2xl bg-DigiColorize h-[49rem]"
+          id="main-pop"
+          class="w-[97.5%] grid grid-cols-7 mx-auto mt-3 rounded-2xl h-[49rem]"
         >
-          <div class="bg-gray-500 select-none p-6 rounded-r-2xl col-span-2">
-            <div class="flex flex-col justify-center items-center hidden">
+          <div
+            class="bg-DigiWhiteLevel4 dark:bg-[#082f49] select-none p-6 rounded-r-2xl col-span-2"
+          >
+            <div
+              id="loading"
+              class="flex flex-col justify-center items-center hidden"
+            >
               <img
                 class="w-24 mx-auto mt-16 animate-spin"
                 src="icons/loading-svgrepo-com.svg"
                 alt="spin-loading"
               />
               <div
-                class="text-white pt-4 text-center mx-auto text-2xl font-medium"
+                class="text-white dark:text-white pt-4 text-center mx-auto text-2xl font-medium"
               >
                 لطفا صبر کنید ...
               </div>
             </div>
-            <div class="hidden">
-              <div class="text-center text-white text-xl p-4 font-medium">
-                نتایج جست و جو
-              </div>
-              <div
-                class="w-full space-y-0 bg-gray-400 h-[42rem] shadow-2xl overflow overflow-scroll overflow-x-hidden"
-              >
-                <div
-                  class="h-24 border-b-xl border border-gray-400 flex justify-right pr-4 items-center w-full bg-DigiInputBG p-1 text-white transiton hover:duration-500 animation hover:cursor-pointer hover:bg-DigiElement"
-                >
-                  <img
-                    src="#"
-                    alt="image-digigard"
-                    class="image p-6 w-14 h-14 rounded-full bg-DigiRed"
-                  />
-                  <div class="flex flex-col space-y-2">
-                    <h3 class="text-white font-bold pr-4 text-lg">
-                      کلاه زمستانی
-                    </h3>
-                    <p class="text-DigiGray font-small pr-4 text-sm">
-                      کلاه مخصوص RTETF
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <!-- <div class="form"> -->
+            <div
+              class="text-center text-black dark:text-white text-xl p-4 font-medium"
+            >
+              نتایج جست و جو
             </div>
+            <div
+              class="form w-full space-y-0 bg-gray-400 h-[42rem] shadow-2xl overflow overflow-scroll overflow-x-hidden"
+            >
+              <!-- <div
+                class="h-24 products dark:hover:bg-gray-700 border-b-xl dark:bg-[#0f172a] border border-gray-400 flex justify-right pr-4 items-center w-full bg-DigiWhiteLevel3 p-1 text-white transiton hover:duration-500 animation hover:cursor-pointer hover:bg-gray-200"
+              >
+                <img
+                  src="#"
+                  alt="image-digigard"
+                  class="image p-6 w-14 h-14 rounded-full bg-DigiRed"
+                />
+                <div class="flex flex-col space-y-2">
+                  <h3
+                    class="title_products elementTitle dark:text-white text-DigiBlack font-bold pr-4 text-lg"
+                  >
+                    کلاه زمستانی
+                  </h3>
+                  <p
+                    class="text-DigiWhiteLevel5 font-small pr-4 text-sm dark:text-[#0ea5e9"
+                  >
+                    کلاه مخصوص RTETF
+                  </p>
+                </div>
+              </div> -->
+            </div>
+            <!-- </div> -->
           </div>
-          <div class="bg-gray-700 p-6 rounded-l-2xl col-span-5"></div>
+          <div
+            class="bg-DigiWhiteLevel2 dark:bg-[#075985] p-6 rounded-l-2xl col-span-5"
+          ></div>
         </div>
       </main>
       <footer></footer>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>
