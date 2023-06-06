@@ -28,3 +28,9 @@ html {
   background-color: #f91a47;
   color: white;
 }
+
+.element-icon:hover {
+  transform: translateY(-11px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}

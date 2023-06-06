@@ -7,6 +7,10 @@ const main_pop = document.getElementById("main-pop");
 const loading = document.getElementById("loading");
 const form = document.querySelector(".form");
 const title_product = document.querySelector(".title_product");
+const message_t = document.getElementById("message-text");
+const results = document.getElementById("results");
+const products_elements = document.getElementById("products-elements");
+
 // api implementation
 
 // https://one-api.ir/digikala/?token={token}&action=search&q={query}&page={page}
@@ -71,6 +75,9 @@ const elementFunc = function (data) {
                   </p>
                 </div>
               </div>`;
+    loading.classList.add("hidden");
+    results.classList.remove("hidden");
+    products_elements.classList.remove("hidden");
     form.insertAdjacentHTML("afterbegin", html);
   }
 };
@@ -80,8 +87,9 @@ search_button.addEventListener("click", () => {
   if (search.value.length == 0) {
     alert("فیلد جست و جو نمی تواند خالی باشد");
   } else {
-    message.classList.add("hidden");
+    message_t.classList.add("hidden");
     main_pop.classList.remove("hidden");
+    loading.classList.remove("hidden");
     DigiGard(search.value);
     // loading.classList.remove("hidden");
   }

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="input.css" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <script>
       if (
         localStorage.getItem("color-theme") === "dark" ||
@@ -72,7 +73,7 @@
       >
         <div
           id="message-text"
-          class="message hidden flex flex-col justify-center items-center h-full"
+          class="flex flex-col justify-center items-center h-full"
         >
           <div
             class="text-message dark:text-white text-center text-DigiBlack font-bold text-3xl"
@@ -83,11 +84,12 @@
         </div>
         <div
           id="main-pop"
-          class="w-[97.5%] grid grid-cols-7 mx-auto mt-3 rounded-2xl h-[49rem]"
+          class="w-[97.5%] hidden grid grid-cols-7 mx-auto mt-3 rounded-2xl h-[49rem]"
         >
           <div
             class="bg-DigiWhiteLevel4 dark:bg-[#082f49] select-none p-6 rounded-r-2xl col-span-2"
           >
+            <!-- loading -->
             <div
               id="loading"
               class="flex flex-col justify-center items-center hidden"
@@ -105,12 +107,14 @@
             </div>
             <!-- <div class="form"> -->
             <div
-              class="text-center text-black dark:text-white text-xl p-4 font-medium"
+              id="results"
+              class="text-center hidden text-black dark:text-white text-xl p-4 hidden font-medium"
             >
               نتایج جست و جو
             </div>
             <div
-              class="form w-full space-y-0 bg-gray-400 h-[42rem] shadow-2xl overflow overflow-scroll overflow-x-hidden"
+              id="products-elements"
+              class="form w-full space-y-0 bg-gray-400 h-[42rem] hidden shadow-2xl overflow overflow-scroll overflow-x-hidden"
             >
               <!-- <div
                 class="h-24 products dark:hover:bg-gray-700 border-b-xl dark:bg-[#0f172a] border border-gray-400 flex justify-right pr-4 items-center w-full bg-DigiWhiteLevel3 p-1 text-white transiton hover:duration-500 animation hover:cursor-pointer hover:bg-gray-200"
@@ -138,7 +142,137 @@
           </div>
           <div
             class="bg-DigiWhiteLevel2 dark:bg-[#075985] p-6 rounded-l-2xl col-span-5"
-          ></div>
+          >
+            <!-- product specification -->
+
+            <!-- <div class="flex flex-col bg-red-400 items-center">
+              <img
+                src="#"
+                class="w-56 h-56 rounded-full border border-DigiRed bg-DigiRed"
+                alt="image-product"
+              />
+              <div class="text-DigiRed text-center font-medium pt-4">
+                تنها 3 عدد باقی مانده
+              </div>
+              <div class="justify-self-end">cost</div>
+            </div> -->
+            <div class="grid hidden grid-cols-4 gap-1">
+              <div class="product-specification col-span-3 p-4">
+                <div class="grid grid-cols-2">
+                  <div class="flex-flex-col">
+                    <div class="flex items-center space-x-4">
+                      <!-- <lord-icon
+                  src="https://cdn.lordicon.com/ggqtvqxi.json"
+                  trigger="hover"
+                  colors="primary:#4be1ec,secondary:#cb5eee"
+                  style="width: 70px; height: 70px"
+                >
+                </lord-icon> -->
+                      <div
+                        class="title font-bold dark:text-white text-3xl pt-1"
+                      >
+                        عنوان محصول
+                      </div>
+                    </div>
+                    <h5
+                      class="pt-4 title-category dark:text-gray-400 font-medium text-gray-500"
+                    >
+                      دسته بندی
+                    </h5>
+                    <p
+                      class="product-text pt-6 text-gray-400 dark:text-gray-300 max-w-xl"
+                    >
+                      امکان برگشت کالا در گروه موبایل با دلیل "انصراف از خرید"
+                      تنها در صورتی مورد قبول است که پلمب کالا باز نشده باشد.
+                      تمام گوشی‌های دیجی‌کالا ضمانت رجیستری دارند. در صورت وجود
+                      مشکل رجیستری، می‌توانید بعد از مهلت قانونی ۳۰ روزه، گوشی
+                      خریداری‌شده را مرجوع کنید.
+                    </p>
+                    <h5
+                      class="pt-8 title-category text-xl dark:text-gray-400 font-medium text-gray-500"
+                    >
+                      برند :
+                    </h5>
+                    <a
+                      href="#"
+                      class="pt-4 mt-4 block title-link dark:text-blue-400 text-xl font-medium text-blue-600"
+                      >اطلاعات بیشتر</a
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text-xl mt-4 p-6 flex flex-col max-w-xl font-bold rounded-xl border border-gray-400"
+                >
+                  <a
+                    href="#"
+                    class="pt-4 mt-4 title-link text-xl font-medium text-DigiRed"
+                    >مشاهده نظر کارشناس درباره کالا</a
+                  >
+
+                  <a
+                    href="#"
+                    class="pt-4 mt-4 title-link text-xl font-medium text-DigiRed"
+                    >مشاهده مشخصات فنی کالا</a
+                  >
+
+                  <a
+                    href="#"
+                    class="pt-4 mt-4 mb-4 title-link text-xl font-medium text-DigiRed"
+                    >مقایسه کالاها</a
+                  >
+                </div>
+              </div>
+              <div class="grid-cols-1 grid">
+                <div
+                  class="flex flex-col justify-start items-center row-span-5 space-y-4"
+                >
+                  <img
+                    src="#"
+                    class="w-56 h-56 rounded-full border border-DigiRed bg-DigiRed"
+                    alt="image-product"
+                  />
+                  <div
+                    class="text-DigiRed select-none text-center dark:text-red-400 font-medium pt-4"
+                  >
+                    تنها 3 عدد باقی مانده
+                  </div>
+                </div>
+                <button
+                  class="justify-self-end text-xl font-bold ml-8 select-none rounded-lg px-12 text-green-300 bg-green-800 items-center justify-center"
+                >
+                  320000 تومان
+                </button>
+              </div>
+              <div
+                class="grid-cols-4 grid col-span-5 gap-4 justify-between items-center w-full h-24"
+              >
+                <div
+                  class="right col-span-3 pr-4 text-gray-500 dark:text-gray-400"
+                >
+                  برنامه نویس و طراحی : robert.minia01@gmail.com
+                </div>
+                <div
+                  class="flex space-y-0 p-4 ml-3 items-center justify-between"
+                >
+                  <i
+                    class="ph-fill ph-telegram-logo element-icon text-4xl text-blue-400 dark:text-blue-300"
+                  ></i>
+                  <i
+                    class="ph-fill ph-instagram-logo element-icon text-4xl text-orange-500 dark:text-orange-400"
+                  ></i>
+                  <i
+                    class="ph-fill ph-twitter-logo element-icon text-4xl text-blue-400 dark:text-blue-300"
+                  ></i>
+                  <i
+                    class="ph-fill ph-youtube-logo element-icon text-4xl text-red-500 dark:text-red-400"
+                  ></i>
+                  <i
+                    class="ph-fill ph-linkedin-logo element-icon text-4xl text-blue-600 dark:text-blue-500"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
       <footer></footer>
