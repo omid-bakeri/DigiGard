@@ -144,8 +144,12 @@ search_button.addEventListener("click", () => {
 // products show implementation
 
 const showProductsElemetsVlaues = function (data) {
+  // hashchange
+  // window.addEventListener("hashchange", () => {
+  //   console.log("hashchanged");
+  // });
   products_elements.addEventListener("click", () => {
-    console.log(data[5]);
+    // console.log(data[5]);
     forms.classList.remove("hidden");
     let markup = `
       <div id="" class="grid for grid-cols-4 gap-1">
